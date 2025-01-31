@@ -1,0 +1,7 @@
+.alert-style {
+  background-color: #e6f4ea; /* Light green background */
+  color: #0a5c36; /* Dark green text */
+  padding: 4px 8px; /* Add padding for better spacing */
+  border-radius: 4px; /* Rounded corners */
+  border: 1px solid #11c16f;
+}

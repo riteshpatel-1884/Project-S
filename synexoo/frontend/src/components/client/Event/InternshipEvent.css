@@ -1,0 +1,127 @@
+/* Main Container Styling */
+.event-container {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 800px;
+  margin: 40px auto;
+  overflow: hidden;
+}
+
+/* Header Section */
+.event-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.event-header h2 {
+  font-size: 26px;
+  color: #333;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.event-date {
+  color: #666;
+  font-size: 16px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Timeline Section */
+.timeline {
+  border-left: 3px solid #007bff;
+  padding-left: 20px;
+  margin-left: 15px;
+  position: relative;
+}
+
+.timeline-item {
+  margin-bottom: 30px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideInUp 0.8s ease-in-out forwards;
+}
+
+.timeline-icon {
+  position: absolute;
+  left: -35px;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  background: #007bff;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-item.not-registered .timeline-icon {
+  background: #dc3545;
+}
+
+.timeline-item.not-registered .timeline-content h3 {
+  color: #dc3545;
+}
+
+.timeline-item.upcoming .timeline-icon {
+  background: #ffc107;
+}
+
+.timeline-content h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.timeline-content p {
+  margin: 5px 0 0;
+  color: #666;
+}
+
+/* Call-to-Action Button */
+.cta {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.cta-button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.cta-button:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
