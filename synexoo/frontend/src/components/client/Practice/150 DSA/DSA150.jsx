@@ -5,8 +5,7 @@ import {
   Circle,
   Star,
   BookmarkPlus,
-  Mail,
-  ArrowRight,
+  Lock,
   Sparkles,
 } from "lucide-react";
 import axios from "axios";
@@ -22,8 +21,9 @@ function DSA150() {
   const [notes, setNotes] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const serverUrl = "https://project-s-nuaq.onrender.com";
+
   const [isMobile, setIsMobile] = useState(false);
+  const [isNotesLocked, setIsNotesLocked] = useState(true); // Lock notes by default
 
   // Apply dark mode classes to the body element
   useEffect(() => {
@@ -46,11 +46,14 @@ function DSA150() {
       try {
         setLoading(true);
         const token = localStorage.getItem("token");
-        const response = await axios.get(`${serverUrl}/api/user/progress`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          "https://project-s-nuaq.onrender.com/api/user/progress",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         const solvedQuestions = response.data?.solvedQuestions || [];
         const bookmarkedQuestions = response.data?.bookmarkedQuestions || [];
@@ -144,6 +147,10 @@ function DSA150() {
   };
 
   const handleNoteChange = async (questionId, noteText) => {
+    if (isNotesLocked) {
+      alert("Notes feature is locked, you need to subscribe to unlock it");
+      return;
+    }
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
@@ -422,7 +429,7 @@ function DSA150() {
                             <button
                               key={tab}
                               onClick={() => setActiveTab(tab)}
-                              className={`px-4 py-2 font-medium text-sm sm:text-base ${
+                              className={`px-4 py-2 font-medium text-sm sm:text-base relative ${
                                 // Reduced padding and text size for mobile
                                 activeTab === tab
                                   ? "border-b-2 border-blue-500 text-blue-400"
@@ -528,7 +535,7 @@ function DSA150() {
                           </div>
                         )}
                         {activeTab === "notes" && (
-                          <div>
+                          <div className="relative">
                             <textarea
                               value={notes[selectedQuestion.id] || ""}
                               onChange={(e) =>
@@ -537,9 +544,15 @@ function DSA150() {
                                   e.target.value
                                 )
                               }
+                              disabled={isNotesLocked}
                               placeholder="Write your approach, time complexity analysis, and key insights here..."
-                              className={`w-full h-40 sm:h-64 p-2 sm:p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs sm:text-sm bg-gray-700 text-white border-gray-600`}
+                              className={`w-full h-40 sm:h-64 p-2 sm:p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs sm:text-sm bg-gray-700 text-white border-gray-600 ${
+                                isNotesLocked ? "cursor-not-allowed" : ""
+                              }`}
                             />
+                            {isNotesLocked && (
+                              <Lock className="w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
+                            )}
                           </div>
                         )}
                       </div>
@@ -608,7 +621,7 @@ function DSA150() {
                     <button
                       key={tab}
                       onClick={() => setActiveTab(tab)}
-                      className={`px-6 py-3 font-medium ${
+                      className={`px-6 py-3 font-medium relative ${
                         activeTab === tab
                           ? "border-b-2 border-blue-500 text-blue-400"
                           : "text-gray-400 hover:text-gray-200"
@@ -689,15 +702,21 @@ function DSA150() {
                 )}
 
                 {activeTab === "notes" && (
-                  <div>
+                  <div className="relative">
                     <textarea
                       value={notes[selectedQuestion.id] || ""}
                       onChange={(e) =>
                         handleNoteChange(selectedQuestion.id, e.target.value)
                       }
+                      disabled={isNotesLocked}
                       placeholder="Write your approach, time complexity analysis, and key insights here..."
-                      className={`w-full h-64 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white border-gray-600`}
+                      className={`w-full h-64 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 text-white border-gray-600 ${
+                        isNotesLocked ? "cursor-not-allowed" : ""
+                      }`}
                     />
+                    {isNotesLocked && (
+                      <Lock className="w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
+                    )}
                   </div>
                 )}
               </div>
