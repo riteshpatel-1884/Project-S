@@ -4,7 +4,7 @@ import {
   FaHome,
 } from "react-icons/fa";
 
-import "./Sidebar.css";
+import "./sidebar.css";
 
 const Sidebar = () => {
   const menuItems = [

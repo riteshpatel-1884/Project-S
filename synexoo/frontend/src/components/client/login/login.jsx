@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { handleError, handleSuccess } from "../../../utils";
-import "./Login.css";
+import "./login.css";
 
 function Login({ setIsAuthenticated }) {
   const [loginInfo, setLoginInfo] = useState({
