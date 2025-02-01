@@ -72,14 +72,17 @@ const WeeklySeries = () => {
 
     // Make request to backend to update
     try {
-      await fetch("http://localhost:8080/api/user/weeklyprogress/solved", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify({ questionId: id }),
-      });
+      await fetch(
+        "https://project-s-nuaq.onrender.com/api/user/weeklyprogress/solved",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({ questionId: id }),
+        }
+      );
     } catch (error) {
       console.error("error while toggling solved:", error);
     }
@@ -96,14 +99,17 @@ const WeeklySeries = () => {
       return newBookmarked;
     });
     try {
-      await fetch("http://localhost:8080/api/user/weeklyprogress/bookmarked", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify({ questionId: id }),
-      });
+      await fetch(
+        "https://project-s-nuaq.onrender.com/api/user/weeklyprogress/bookmarked",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({ questionId: id }),
+        }
+      );
     } catch (error) {
       console.error("error while toggling bookmarked:", error);
     }
@@ -120,20 +126,21 @@ const WeeklySeries = () => {
   // Send updated notes to the backend
   const handleNoteBlur = async (questionId) => {
     try {
-      await fetch("http://localhost:8080/api/user/weeklyprogress/notes", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify({
-          questionId: questionId,
-          note: notes[questionId],
-        }),
-      });
-    } catch (error) {
-     
-    }
+      await fetch(
+        "https://project-s-nuaq.onrender.com/api/user/weeklyprogress/notes",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            questionId: questionId,
+            note: notes[questionId],
+          }),
+        }
+      );
+    } catch (error) {}
   };
 
   // useEffect to fetch the user progress
@@ -141,7 +148,7 @@ const WeeklySeries = () => {
     const fetchUserProgress = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8080/api/user/weeklyprogress",
+          "https://project-s-nuaq.onrender.com/api/user/weeklyprogress",
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -152,7 +159,7 @@ const WeeklySeries = () => {
           const data = await response.json();
           setSolvedQuestions(new Set(data.solvedQuestions));
           setBookmarked(new Set(data.bookmarkedQuestions));
-        
+
           const notesObj = data.notes.reduce((acc, note) => {
             acc[note.questionId] = note.note;
             return acc;

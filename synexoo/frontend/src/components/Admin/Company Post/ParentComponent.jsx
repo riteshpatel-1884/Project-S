@@ -32,7 +32,9 @@ const ParentComponent = () => {
 
   const handleDeletePost = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/api/jobs/delete/${id}`);
+      await axios.delete(
+        `https://project-s-nuaq.onrender.com/api/jobs/delete/${id}`
+      );
       setPosts((prevPosts) => prevPosts.filter((post) => post._id !== id));
     } catch (error) {
       console.error("Error deleting post:", error);

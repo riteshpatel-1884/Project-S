@@ -24,27 +24,27 @@ const Users = () => {
   const [isSubmittingFeedback, setIsSubmittingFeedback] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-const fetchUsers = async () => {
-  try {
-    // Change from Cookies to localStorage
-    const token = localStorage.getItem("adminToken");
-    const response = await axios.get(
-      "http://localhost:8080/api/users-with-progress",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    setUsers(response.data);
-  } catch (error) {
-    console.error("Error fetching users:", error);
-    setError("Failed to fetch users");
-  }
-};
-useEffect(() => {
-  fetchUsers();
-}, []);
+  const fetchUsers = async () => {
+    try {
+      // Change from Cookies to localStorage
+      const token = localStorage.getItem("adminToken");
+      const response = await axios.get(
+        "https://project-s-nuaq.onrender.com/api/users-with-progress",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setUsers(response.data);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      setError("Failed to fetch users");
+    }
+  };
+  useEffect(() => {
+    fetchUsers();
+  }, []);
   // Filter users based on search query
   const filteredUsers = users.filter(
     (user) =>
@@ -56,7 +56,7 @@ useEffect(() => {
     try {
       const token = localStorage.getItem("adminToken");
       const response = await axios.get(
-        `http://localhost:8080/api/admin/feedback-history/${userId}`,
+        `https://project-s-nuaq.onrender.com/api/admin/feedback-history/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -73,25 +73,24 @@ useEffect(() => {
     }
   };
 
- const handleDeleteFeedback = async (feedbackId) => {
-   try {
-     const token = localStorage.getItem("adminToken");
-     const response = await axios.delete(
-       `http://localhost:8080/api/admin/feedback/${feedbackId}`,
-       {
-         headers: {
-           Authorization: `Bearer ${token}`,
-         },
-       }
-     );
+  const handleDeleteFeedback = async (feedbackId) => {
+    try {
+      const token = localStorage.getItem("adminToken");
+      const response = await axios.delete(
+        `https://project-s-nuaq.onrender.com/api/admin/feedback/${feedbackId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-   
-     fetchFeedbackHistory(selectedUser._id); // Refresh history
-   } catch (error) {
-     console.error("Detailed delete error:", error.response?.data || error);
-     setError(error.response?.data?.message || "Feedback deletion failed");
-   }
- };
+      fetchFeedbackHistory(selectedUser._id); // Refresh history
+    } catch (error) {
+      console.error("Detailed delete error:", error.response?.data || error);
+      setError(error.response?.data?.message || "Feedback deletion failed");
+    }
+  };
   // Render progress bar
   const renderProgressBar = (percentage) => (
     <div className="w-full bg-gray-200 rounded-full h-2.5">
@@ -102,32 +101,31 @@ useEffect(() => {
     </div>
   );
 
- const handleSendFeedback = async () => {
-   try {
-     const token = localStorage.getItem("adminToken"); // Consistent token retrieval
-     const response = await axios.post(
-       "http://localhost:8080/api/send-feedback",
-       {
-         userId: selectedUser._id,
-         message: feedbackMessage,
-       },
-       {
-         headers: {
-           Authorization: `Bearer ${token}`,
-           "Content-Type": "application/json", // Explicitly set content type
-         },
-       }
-     );
+  const handleSendFeedback = async () => {
+    try {
+      const token = localStorage.getItem("adminToken"); // Consistent token retrieval
+      const response = await axios.post(
+        "https://project-s-nuaq.onrender.com/api/send-feedback",
+        {
+          userId: selectedUser._id,
+          message: feedbackMessage,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json", // Explicitly set content type
+          },
+        }
+      );
 
-    
-     setFeedbackMessage("");
-     setIsFeedbackModalOpen(false);
-     alert("Feedback sent successfully!");
-   } catch (error) {
-     console.error("Detailed feedback error:", error.response?.data || error);
-     setError(error.response?.data?.message || "Feedback sending failed");
-   }
- };
+      setFeedbackMessage("");
+      setIsFeedbackModalOpen(false);
+      alert("Feedback sent successfully!");
+    } catch (error) {
+      console.error("Detailed feedback error:", error.response?.data || error);
+      setError(error.response?.data?.message || "Feedback sending failed");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex">

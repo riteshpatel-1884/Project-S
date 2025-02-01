@@ -24,7 +24,9 @@ const CompanyPost = () => {
 
   const fetchCompanies = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/auth/companies");
+      const response = await axios.get(
+        "https://project-s-nuaq.onrender.com/auth/companies"
+      );
       setCompanies(response.data);
     } catch (error) {
       console.error("Error fetching companies:", error);
@@ -40,12 +42,12 @@ const CompanyPost = () => {
     try {
       if (editingCompany) {
         await axios.put(
-          `http://localhost:8080/auth/companies/${editingCompany._id}`,
+          `https://project-s-nuaq.onrender.com/auth/companies/${editingCompany._id}`,
           newCompany
         );
         setEditingCompany(null);
       } else {
-        await axios.post("http://localhost:8080/auth/companies", newCompany);
+        await axios.post("https://project-s-nuaq.onrender.com/auth/companies", newCompany);
       }
       fetchCompanies();
       setNewCompany({
@@ -67,7 +69,7 @@ const CompanyPost = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/auth/companies/${id}`);
+      await axios.delete(`https://project-s-nuaq.onrender.com/auth/companies/${id}`);
       fetchCompanies();
     } catch (error) {
       console.error("Error deleting company:", error);

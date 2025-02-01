@@ -51,7 +51,7 @@ const InternProgress = () => {
     completionPercentage: 0,
   });
 
-  const API_BASE_URL = "http://localhost:8080";
+  const API_BASE_URL = "https://project-s-nuaq.onrender.com";
   useEffect(() => {
     document.body.classList.add("dark");
     fetchProjects();
@@ -71,7 +71,7 @@ const InternProgress = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        "http://localhost:8080/api/user-feedbacks",
+        "https://project-s-nuaq.onrender.com/api/user-feedbacks",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -88,7 +88,7 @@ const InternProgress = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `http://localhost:8080/api/feedback/${feedbackId}/read`,
+        `https://project-s-nuaq.onrender.com/api/feedback/${feedbackId}/read`,
         {},
         {
           headers: {

@@ -22,7 +22,7 @@ function DSA150() {
   const [notes, setNotes] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const serverUrl = "http://localhost:8080";
+  const serverUrl = "https://project-s-nuaq.onrender.com";
   const [isMobile, setIsMobile] = useState(false);
 
   // Apply dark mode classes to the body element
@@ -166,7 +166,6 @@ function DSA150() {
       setNotes(updatedNotes);
     } catch (err) {
       console.error("Error saving note:", err);
-     
     }
   };
 

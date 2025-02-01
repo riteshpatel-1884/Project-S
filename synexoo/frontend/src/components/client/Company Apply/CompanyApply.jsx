@@ -7,35 +7,33 @@ const CompanyApply = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isMobile, setIsMobile] = useState(false);
 
+  useEffect(() => {
+    const fetchCompanies = async () => {
+      try {
+        const response = await axios.get(
+          "https://project-s-nuaq.onrender.com/auth/companies"
+        );
+        setCompanies(response.data);
+      } catch (error) {
+        console.error("Error fetching companies:", error);
+      }
+    };
 
-    useEffect(() => {
-        const fetchCompanies = async () => {
-          try {
-            const response = await axios.get(
-              "http://localhost:8080/auth/companies"
-            );
-            setCompanies(response.data);
-          } catch (error) {
-            console.error("Error fetching companies:", error);
-          }
-        };
+    fetchCompanies();
+    const interval = setInterval(() => {
+      setCompanies((prevCompanies) => {
+        return prevCompanies.map((company) => ({ ...company }));
+      });
+    }, 60000); // Update every 1 min
+    document.body.classList.add("dark");
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkIsMobile();
+    window.addEventListener("resize", checkIsMobile);
 
-        fetchCompanies();
-        const interval = setInterval(() => {
-          setCompanies((prevCompanies) => {
-            return prevCompanies.map((company) => ({ ...company }));
-          });
-        }, 60000); // Update every 1 min
-      document.body.classList.add("dark");
-     const checkIsMobile = () => {
-         setIsMobile(window.innerWidth < 768);
-        };
-      checkIsMobile();
-      window.addEventListener("resize", checkIsMobile);
-
-        return () => clearInterval(interval);
+    return () => clearInterval(interval);
   }, []);
-
 
   const filteredCompanies = companies.filter((company) => {
     const matchesFilter = filter === "all" || company.type === filter;
@@ -86,7 +84,9 @@ const CompanyApply = () => {
               placeholder="Search by company or role..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className={`w-full px-4 py-3 rounded-lg border border-gray-700 focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none pl-10 bg-gray-800 text-white ${isMobile ? 'p-2' : 'p-3'}`}
+              className={`w-full px-4 py-3 rounded-lg border border-gray-700 focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none pl-10 bg-gray-800 text-white ${
+                isMobile ? "p-2" : "p-3"
+              }`}
             />
             <svg
               className="absolute left-3 top-3.5 h-5 w-5 text-gray-400"
