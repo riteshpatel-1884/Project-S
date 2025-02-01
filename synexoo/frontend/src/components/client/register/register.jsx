@@ -30,7 +30,7 @@ function Signup() {
       return handleError("name, email and password are required");
     }
     try {
-      const url = import.meta.env.VITE_REGISTER_API;
+      const url = "https://project-s-nuaq.onrender.com/auth/signup";
       const response = await fetch(url, {
         method: "POST",
         headers: {

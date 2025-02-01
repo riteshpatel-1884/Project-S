@@ -30,7 +30,7 @@ function AdminRegister() {
     }
 
     try {
-      const url = import.meta.env.VITE_ADMIN_REGISTER_API;
+      const url = "https://project-s-nuaq.onrender.com/auth/admin/create";
       const response = await fetch(url, {
         method: "POST",
         headers: {

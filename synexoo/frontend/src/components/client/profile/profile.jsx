@@ -12,11 +12,11 @@ import { motion } from "framer-motion";
 const Profile = () => {
   const [user, setUser] = useState(null);
   const token = localStorage.getItem("token");
-
+  const url = "https://project-s-nuaq.onrender.com/auth/user";
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(import.meta.env.VITE_PROFILE_API, {
+        const response = await axios.get(url, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

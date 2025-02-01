@@ -27,7 +27,7 @@ const handleLogin = async (e) => {
     return handleError("Username and password are required");
   }
   try {
-    const url = import.meta.env.VITE_ADMIN_LOGIN_API;
+    const url = "https://project-s-nuaq.onrender.com/auth/admin/login";
     const response = await fetch(url, {
       method: "POST",
       headers: {
