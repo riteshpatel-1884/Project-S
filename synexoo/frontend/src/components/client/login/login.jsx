@@ -32,7 +32,7 @@ function Login({ setIsAuthenticated }) {
     setIsLoading(true);
 
     try {
-      const url = import.meta.env.VITE_LOGIN_API;
+      const url = "https://project-s-nuaq.onrender.com/auth/login";
       const response = await fetch(url, {
         method: "POST",
         headers: {
