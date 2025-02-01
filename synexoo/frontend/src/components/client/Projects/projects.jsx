@@ -40,7 +40,7 @@ const Projects = () => {
   };
 
   return (
-    <div className="min-h-screen py-6 px-4 sm:px-6 lg:px-8 bg-gray-900 text-white">
+    <div className="min-h-screen py-6 sm:px-6 lg:px-8 bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-extrabold text-center text-transparent bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text mb-8 md:mb-12 animate-pulse">
           Web Development Project Ideas

@@ -93,7 +93,7 @@ const HRQuestions = () => {
   return (
     <div
       className={`min-h-screen ${
-        isMobile ? "p-4" : "p-6"
+        isMobile ? "p-0" : "p-6"
       }  bg-gray-900 text-white`}
     >
       <div className="max-w-5xl mx-auto">

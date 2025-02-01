@@ -219,7 +219,7 @@ function DSA150() {
 
   return (
     <div
-      className={`min-h-screen bg-gray-900 text-white p-4 sm:p-6`} // Adjusted padding for smaller screens
+      className={`min-h-screen bg-gray-900 text-white sm:p-6`} // Adjusted padding for smaller screens
     >
       <div className="max-w-6xl mx-auto">
         {/* Stats Section */}

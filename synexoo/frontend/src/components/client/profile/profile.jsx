@@ -40,7 +40,7 @@ const Profile = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-4xl mx-auto p-8 bg-gray-900 rounded-xl shadow-xl mt-12 md:mt-20"
+      className="max-w-4xl mx-auto bg-gray-900 rounded-xl shadow-xl mt-12 md:mt-20"
     >
       <div className="text-center mb-8">
         <h1 className="text-3xl font-extrabold text-white mb-2">{user.name}</h1>
