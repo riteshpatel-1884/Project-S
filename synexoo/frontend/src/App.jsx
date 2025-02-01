@@ -14,7 +14,7 @@ import Admindashboard from "./components/Admin/Admindashboard/Home";
 import Dashboardadmin from "./components/Admin/DashboardAdmin/Dashboardadmin";
 import AdminProfile from "./components/Admin/Profile/AdminProfile";
 import Users from "./components/Admin/ProgressList/UsersWithProgress";
-import DSA150 from "./components/client/Practice/150 DSA/dsa150";
+import DSA150 from "./components/client/Practice/150 DSA/DSA150";
 import Projects from "./components/client/Projects/projects";
 import WeeklySeries from "./components/client/Practice copy/150 DSA/DSA150";
 import CompanyApply from "./components/client/Company Apply/CompanyApply";
